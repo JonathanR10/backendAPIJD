@@ -15,13 +15,23 @@ router.get('/',
 
 router.get('/:id',
 (req, res) => {
-    const {id} = client.getOne(id);
+    const { id } = req.params;
+        const client = services.getOne(id);
+        res.status(200).json({
+            message: 'Here are your client',
+            client
 })
+});
 
 router.post('/',
 (req, res) => {
-    
-})
+    const data = req.body;
+    const confirmation = services.create(data);
+    res.status(201).json({
+        confirmation
+    });
+}
+);
 
 
 router.patch('/modify-name/:id',
@@ -32,6 +42,14 @@ router.patch('/modify-name/:id',
     res.status(200).json({ confirmation});
 })
 
-router.delete('/')
+router.delete('/:id', 
+    (req, res) => {
+        const { id } = req.params;
+        const confirmation = services.delete(id);
+        res.status(200).json({
+            confirmation
+        });
 
+    });
+    
 module.exports = router;

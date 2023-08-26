@@ -8,22 +8,17 @@ const order = require('../services/orderService');
 
 router.get('/',
 (req, res) => {
-    const clients = services.getAll();
+    const orders = services.getAll();
     res.status(200).json({
         message: 'Here are your clients',
-        clients
+        orders
     })
 })
 
 router.get('/:id',
 (req, res) => {
-    const {id} = client.getOne(id);
-})
-
-router.post('/',
-(req, res) => {
-    
-})
+    const {id} = order.getOne(id);
+});
 
 
 router.patch('/modify-name/:id',
@@ -32,7 +27,7 @@ router.patch('/modify-name/:id',
     const{id} = req.params;
     const confirmation = services.updateName(id,name);
     res.status(200).json({ confirmation});
-})
+});
 
 router.delete('/')
 module.exports = router;

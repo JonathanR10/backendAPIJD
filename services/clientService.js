@@ -1,12 +1,27 @@
+
+
 const db = require('../lib/clientModel');
+const boom = require('@hapi/boom');
 
 class client{
     constructor() {}
 
-    static getAll(){
-const clients = db;
-return clients;
+    static getAll(minAmount){
+        let clients;
+        
+        if(!minAmount)
+        {
+            clients = db;
+        }else{
+        
+        }
+        return clients;
     }
+    /*static getAll(){
+        const clients = db;
+        return clients;
+    }
+    */
 
     static getOne(id){
         const clientId = 'c'+id;
@@ -34,13 +49,17 @@ return clients;
         delete db[clientId];
         return true;
     }
-
-    }
     static increaseSpentAmount(id,amount){
         const {clientId} = client.getOne(id);
         db[clientId.amount] += amount;
         return true;
+    }
+
 }
 
 
 module.exports = client;
+
+
+
+// imoprtarparuqtes para errores npm i @hapi/boom
